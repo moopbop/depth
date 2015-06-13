@@ -8,36 +8,26 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 	#region public variables
-	[Tooltip("Speed multiplier")]
 	public float acceleration;
-	
-	[Tooltip("Side-to-side velocity cap")]
 	public float maxXVel;					// Not affected by combo.
-	
-	[Tooltip("Vertical velocity cap")]
 	public float maxYVel;					// Will be affected by combo.
-	
-	[Tooltip("Combo multiplier")]
-	public int combo;						// Public for ease of coding, will be made private on release.
-	
-	[Tooltip("Rate to increase Y velocity per combo level")]
 	public float comboYSpeedMult;
 	
-	[Tooltip("Maximim air value. Player dies when they have 0 air")]
-	public float maxAir;
-
-	[Tooltip("The time before combo reset the instant a combo is started")]
+	public int combo;						// Public for ease of coding, will be made private on release.
 	public float maxComboTimer;
-
-	[Tooltip("The fish prefab we are copying for instantiation")]
-	public GameObject fish;
-
-	[Tooltip("The bubble prefab we are copying for instantiation")]
-	public GameObject bubble;
 	
+	public float maxAir;
+	public GameObject bubble;
 	public float airLossPerSecond;
 	public float airIncreaseOnPopBubble;
 	public LayerMask bubbleMask;
+	public float bubbleSpawnTime;
+	
+	public GameObject fish;
+	
+	public AudioClip fishHitAudio;
+	public AudioClip deathAudio;
+	public AudioClip bubbleGetAudio;
 	
 	// For clamping player movement, will be made private after tinkering is done
 	public float minXPos;
@@ -49,12 +39,14 @@ public class PlayerController : MonoBehaviour
 	#region private variables
 	private float xMove;
 	private float yMove;
-	private Rigidbody2D rb;
 	private Vector2 velocity;
+	
 	private float air;
 	private float comboTimer;
+	
 	private Vector3 fishPosition;
 	private float fishTimer;
+	
 	private Vector3 bubblePosition;
 	private float bubbleTimer;
 	#endregion
@@ -63,7 +55,6 @@ public class PlayerController : MonoBehaviour
 	{
 		xMove = 0;
 		yMove = 0;
-		rb = this.GetComponent<Rigidbody2D>();
 		velocity = new Vector2(0, 0);
 		air = maxAir;
 		fishTimer = 0;
@@ -88,8 +79,6 @@ public class PlayerController : MonoBehaviour
 		{
 			Die();
 		}
-		
-		Debug.Log(air);
 	}
 	
 	void FixedUpdate()
@@ -146,18 +135,21 @@ public class PlayerController : MonoBehaviour
 		{
 			air += airIncreaseOnPopBubble;
 			Object.Destroy(col.gameObject);
+			if (bubbleGetAudio != null) AudioSource.PlayClipAtPoint(bubbleGetAudio, this.transform.position);
 		}
 
 		if (colTag == "Fish") {
 			combo++;
 			comboTimer = maxComboTimer;
 			Object.Destroy(col.gameObject);
+			if (fishHitAudio != null)  AudioSource.PlayClipAtPoint(fishHitAudio, this.transform.position);
 		}
 	}
 	
 	private void Die()
 	{
-		Application.LoadLevel(1);
+		if (deathAudio != null) AudioSource.PlayClipAtPoint(deathAudio, this.transform.position);
+		Object.Destroy(this);
 	}
 
 	private void SpawnFish()
@@ -171,7 +163,7 @@ public class PlayerController : MonoBehaviour
 	{
 		bubblePosition = new Vector3 (Random.Range (minXPos, maxXPos), Random.Range (minYPos, maxYPos), -1.1f);
 		GameObject.Instantiate (bubble, bubblePosition, Quaternion.identity);
-		bubbleTimer = 7f;
+		bubbleTimer = bubbleSpawnTime;
 	}
 
 	public float getAir()

@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\AirBar.cs" />
      <Compile Include="Assets\Scripts\Bubble.cs" />
      <Compile Include="Assets\Scripts\Fish.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\ScrollingBackground.cs" />
  <Reference Include="UnityEngine.UI">

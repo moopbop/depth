@@ -15,11 +15,9 @@ public class Fish : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		Vector2 velocity = this.GetComponent<Rigidbody2D> ().velocity;
+		Vector2 velocity = new Vector2(0, speedY * (player.combo + 1) * player.comboYSpeedMult);
 
-		velocity.y = speedY + (player.combo * 1.5f * player.comboYSpeedMult);
-
-		this.GetComponent<Rigidbody2D> ().velocity = velocity;
+		transform.Translate(velocity * Time.deltaTime);
 
 		if (this.transform.position.y >= 5.5)
 			Destroy (gameObject);

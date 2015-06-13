@@ -73,16 +73,21 @@ MonoBehaviour:
   acceleration: 7
   maxXVel: 25
   maxYVel: 25
-  combo: 0
   comboYSpeedMult: .5
-  maxAir: 100
+  combo: 0
   maxComboTimer: 3
-  fish: {fileID: 149258, guid: 5c161bfb4eb0bf448bb383321e40efe7, type: 2}
-  airLossPerSecond: 2
+  maxAir: 100
+  bubble: {fileID: 143118, guid: 18baba89aeafc5346b21bd68e27a1bca, type: 2}
+  airLossPerSecond: 4
   airIncreaseOnPopBubble: 10
   bubbleMask:
     serializedVersion: 2
     m_Bits: 256
+  bubbleSpawnTime: 6
+  fish: {fileID: 149258, guid: 5c161bfb4eb0bf448bb383321e40efe7, type: 2}
+  fishHitAudio: {fileID: 8300000, guid: ffdd4c662bb997e43a232ade3b55ac44, type: 3}
+  deathAudio: {fileID: 8300000, guid: 0d1843381e2e9414aabc367b723f78d9, type: 3}
+  bubbleGetAudio: {fileID: 0}
   minXPos: -8.5
   maxXPos: 8.5
   minYPos: -4.5999999
