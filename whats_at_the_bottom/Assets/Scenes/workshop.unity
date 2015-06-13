@@ -298,6 +298,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11468342, guid: 42aaba42b0678ba43893c76ea80de05f, type: 2}
+      propertyPath: bubble
+      value: 
+      objectReference: {fileID: 143118, guid: 18baba89aeafc5346b21bd68e27a1bca, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 42aaba42b0678ba43893c76ea80de05f, type: 2}
   m_IsPrefabParent: 0
