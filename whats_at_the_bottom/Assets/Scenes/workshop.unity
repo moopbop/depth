@@ -259,6 +259,8 @@ MonoBehaviour:
   maxYVel: 25
   combo: 0
   comboYSpeedMult: 0
+  maxAir: 100
+  airLossPerSecond: 2
   minXPos: -8.5
   maxXPos: 8.5
   minYPos: -4.5999999

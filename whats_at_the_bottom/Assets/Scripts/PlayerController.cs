@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour
 	[Tooltip("Rate to increase Y velocity per combo level")]
 	public float comboYSpeedMult;
 	
+	[Tooltip("Maximim air value. Player dies when they have 0 air")]
+	public float maxAir;
+	
+	public float airLossPerSecond;
+	
 	// For clamping player movement, will be made private after tinkering is done
 	public float minXPos;
 	public float maxXPos;
@@ -35,6 +40,7 @@ public class PlayerController : MonoBehaviour
 	private float yMove;
 	private Rigidbody2D rb;
 	private Vector2 velocity;
+	private float air;
 	#endregion
 	
 	void Start()
@@ -43,6 +49,7 @@ public class PlayerController : MonoBehaviour
 		yMove = 0;
 		rb = this.GetComponent<Rigidbody2D>();
 		velocity = new Vector2(0, 0);
+		air = maxAir;
 	}
 	
 	void Update()
@@ -51,6 +58,16 @@ public class PlayerController : MonoBehaviour
 		xMove = Input.GetAxis("Horizontal");
 		yMove = Input.GetAxis("Vertical");
 		#endregion
+		
+		// Decrease air
+		if (air > 0) air -= Time.deltaTime * airLossPerSecond;
+		Debug.Log(air);
+		
+		// Die if no air
+		if (air <= 0)
+		{
+			Die();
+		}
 	}
 	
 	void FixedUpdate()
@@ -79,5 +96,10 @@ public class PlayerController : MonoBehaviour
 		Vector2 clampedPosition = new Vector2(clampedX, clampedY);
 		
 		this.transform.position = clampedPosition;
+	}
+	
+	private void Die()
+	{
+		Application.LoadLevel(1);
 	}
 }
