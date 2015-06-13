@@ -6,6 +6,9 @@ using System.Collections;
 public class ScrollingBackground : MonoBehaviour
 {
 	public float scrollSpeed;
+	public float baseSpeed;
+	public float yVelocityComboMultiplyer;
+
 	PlayerController player;
 
 	void Start(){
