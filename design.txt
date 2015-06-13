@@ -5,22 +5,21 @@ Dodge sharks because they will eat you
 At the bottom we'll have something dumb and worth it
 
 TODO:
-1. Character movement
+1. Character movement - DONE
 	-Should always be affected by gravity ADDENDUM - We're going to cheat and just have the background scroll.
 	-Move in all directions
 	-Can't move off the screen
 	-Scrolling background
 	
-2. Score
+2. Score - DONE
 	-Score from going down
-	-Score from killing fish (with combo multiplier)
 	
-3. Air
+3. Air - DONE
 	-Air meter
 	-Constantly depleting
 	-Air bubbles randomly spawning
 	
-4. Combos
+4. Combos - DONE
 	-Fish
 	-Kiling fish builds combo
 	-Combo lost after a certain time (shorter time for a greater combo)

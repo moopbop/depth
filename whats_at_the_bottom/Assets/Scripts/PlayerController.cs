@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 	
 	public int combo;						// Public for ease of coding, will be made private on release.
 	public float maxComboTimer;
+	ScrollingBackground scrBkg;
 	
 	public float maxAir;
 	public GameObject bubble;
@@ -24,6 +25,9 @@ public class PlayerController : MonoBehaviour
 	public float bubbleSpawnTime;
 	
 	public GameObject fish;
+	
+	public GameObject shark;
+	public float sharkStartSpawnDistance;
 	
 	public AudioClip fishHitAudio;
 	public AudioClip deathAudio;
@@ -47,6 +51,10 @@ public class PlayerController : MonoBehaviour
 	private Vector3 fishPosition;
 	private float fishTimer;
 	
+	private Vector3 sharkPosition;
+	private bool spawnSharks;
+	private float sharkTimer;
+	
 	private Vector3 bubblePosition;
 	private float bubbleTimer;
 	#endregion
@@ -59,6 +67,9 @@ public class PlayerController : MonoBehaviour
 		air = maxAir;
 		fishTimer = 0;
 		bubbleTimer = 0;
+		scrBkg = GameObject.Find("Background").GetComponent<ScrollingBackground>();
+		spawnSharks = false;
+		sharkTimer = 0;
 	}
 	
 	void Update()
@@ -95,23 +106,38 @@ public class PlayerController : MonoBehaviour
 			velocity.y = maxYVel;
 		}
 
+		// Combo
 		if (comboTimer > 0)
 			comboTimer -= Time.deltaTime;
 
 		if (comboTimer <= 0)
 			combo = 0;
 
+		// Fish
 		if (fishTimer > 0)
 			fishTimer -= Time.deltaTime;
 
 		if (fishTimer <= 0)
 			SpawnFish ();
 
+		// Bubbles
 		if (bubbleTimer > 0)
 			bubbleTimer -= Time.deltaTime;
 
 		if (bubbleTimer <= 0)
 			SpawnBubble ();
+		
+		// Sharks
+		if (sharkTimer > 0)
+			sharkTimer -= Time.deltaTime;
+		if (spawnSharks == false && scrBkg.getDistance() >= sharkStartSpawnDistance)
+		{
+			spawnSharks = true;
+		}
+		if (sharkTimer <= 0)
+		{
+			SpawnShark();
+		}
 	}
 	
 	void LateUpdate()
@@ -144,6 +170,11 @@ public class PlayerController : MonoBehaviour
 			Object.Destroy(col.gameObject);
 			if (fishHitAudio != null)  AudioSource.PlayClipAtPoint(fishHitAudio, this.transform.position);
 		}
+		
+		if (colTag == "Shark")
+		{
+			Die();
+		}
 	}
 	
 	private void Die()
@@ -157,6 +188,13 @@ public class PlayerController : MonoBehaviour
 		fishPosition = new Vector3 (Random.Range (minXPos, maxXPos), -6, -1.1f);
 		GameObject.Instantiate (fish, fishPosition, Quaternion.identity);
 		fishTimer = .5f;
+	}
+	
+	private void SpawnShark()
+	{
+		sharkPosition = new Vector3(Random.Range(minXPos, maxXPos), -6, -1.1f);
+		GameObject.Instantiate(shark, sharkPosition, Quaternion.identity);
+		sharkTimer = 3.5f;
 	}
 
 	private void SpawnBubble()

@@ -85,6 +85,8 @@ MonoBehaviour:
     m_Bits: 256
   bubbleSpawnTime: 6
   fish: {fileID: 149258, guid: 5c161bfb4eb0bf448bb383321e40efe7, type: 2}
+  shark: {fileID: 153688, guid: 1f4201d3521f25c4b96fe4e5a0fabfa1, type: 2}
+  sharkStartSpawnDistance: 100
   fishHitAudio: {fileID: 8300000, guid: ffdd4c662bb997e43a232ade3b55ac44, type: 3}
   deathAudio: {fileID: 8300000, guid: 0d1843381e2e9414aabc367b723f78d9, type: 3}
   bubbleGetAudio: {fileID: 0}
