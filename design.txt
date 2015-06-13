@@ -6,7 +6,7 @@ At the bottom we'll have something dumb and worth it
 
 TODO:
 1. Character movement
-	-Should always be affected by gravity
+	-Should always be affected by gravity ADDENDUM - We're going to cheat and just have the background scroll.
 	-Move in all directions
 	-Can't move off the screen
 	
