@@ -25,6 +25,12 @@ public class PlayerController : MonoBehaviour
 	
 	[Tooltip("Maximim air value. Player dies when they have 0 air")]
 	public float maxAir;
+
+	[Tooltip("The time before combo reset the instant a combo is started")]
+	public float maxComboTimer;
+
+	[Tooltip("The fish prefab we are copying for instantiation")]
+	public GameObject fish;
 	
 	public float airLossPerSecond;
 	public float airIncreaseOnPopBubble;
@@ -43,6 +49,9 @@ public class PlayerController : MonoBehaviour
 	private Rigidbody2D rb;
 	private Vector2 velocity;
 	private float air;
+	private float comboTimer;
+	private Vector3 fishPosition;
+	private float fishTimer;
 	#endregion
 	
 	void Start()
@@ -52,6 +61,7 @@ public class PlayerController : MonoBehaviour
 		rb = this.GetComponent<Rigidbody2D>();
 		velocity = new Vector2(0, 0);
 		air = maxAir;
+		fishTimer = 0;
 	}
 	
 	void Update()
@@ -89,6 +99,18 @@ public class PlayerController : MonoBehaviour
 		{
 			velocity.y = maxYVel;
 		}
+
+		if (comboTimer > 0)
+			comboTimer -= Time.deltaTime;
+
+		if (comboTimer <= 0)
+			combo = 0;
+
+		if (fishTimer > 0)
+			fishTimer -= Time.deltaTime;
+
+		if (fishTimer <= 0)
+			SpawnFish ();
 	}
 	
 	void LateUpdate()
@@ -113,10 +135,28 @@ public class PlayerController : MonoBehaviour
 			air += airIncreaseOnPopBubble;
 			Object.Destroy(col.gameObject);
 		}
+
+		if (colTag == "Fish") {
+			combo++;
+			comboTimer = maxComboTimer;
+			Object.Destroy(col.gameObject);
+		}
 	}
 	
 	private void Die()
 	{
 		Application.LoadLevel(1);
+	}
+
+	private void SpawnFish()
+	{
+		fishPosition = new Vector3 (Random.Range (minXPos, maxXPos), -6, -1.1f);
+		GameObject.Instantiate (fish, fishPosition, Quaternion.identity);
+		fishTimer = 1.8f;
+	}
+
+	public float getAir()
+	{
+		return air;
 	}
 }
