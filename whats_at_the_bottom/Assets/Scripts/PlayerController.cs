@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 	public float maxAir;
 	
 	public float airLossPerSecond;
+	public float airIncreaseOnPopBubble;
+	public LayerMask bubbleMask;
 	
 	// For clamping player movement, will be made private after tinkering is done
 	public float minXPos;
@@ -59,15 +61,19 @@ public class PlayerController : MonoBehaviour
 		yMove = Input.GetAxis("Vertical");
 		#endregion
 		
+		// Cap air
+		if (air > maxAir) air = maxAir;
+		
 		// Decrease air
 		if (air > 0) air -= Time.deltaTime * airLossPerSecond;
-		Debug.Log(air);
 		
 		// Die if no air
 		if (air <= 0)
 		{
 			Die();
 		}
+		
+		Debug.Log(air);
 	}
 	
 	void FixedUpdate()
@@ -96,6 +102,17 @@ public class PlayerController : MonoBehaviour
 		Vector2 clampedPosition = new Vector2(clampedX, clampedY);
 		
 		this.transform.position = clampedPosition;
+	}
+	
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		string colTag = col.gameObject.tag;
+		
+		if (colTag == "Bubble")
+		{
+			air += airIncreaseOnPopBubble;
+			Object.Destroy(col.gameObject);
+		}
 	}
 	
 	private void Die()
