@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
 
 	[Tooltip("The fish prefab we are copying for instantiation")]
 	public GameObject fish;
+
+	[Tooltip("The bubble prefab we are copying for instantiation")]
+	public GameObject bubble;
 	
 	public float airLossPerSecond;
 	public float airIncreaseOnPopBubble;
@@ -52,6 +55,8 @@ public class PlayerController : MonoBehaviour
 	private float comboTimer;
 	private Vector3 fishPosition;
 	private float fishTimer;
+	private Vector3 bubblePosition;
+	private float bubbleTimer;
 	#endregion
 	
 	void Start()
@@ -62,6 +67,7 @@ public class PlayerController : MonoBehaviour
 		velocity = new Vector2(0, 0);
 		air = maxAir;
 		fishTimer = 0;
+		bubbleTimer = 0;
 	}
 	
 	void Update()
@@ -111,6 +117,12 @@ public class PlayerController : MonoBehaviour
 
 		if (fishTimer <= 0)
 			SpawnFish ();
+
+		if (bubbleTimer > 0)
+			bubbleTimer -= Time.deltaTime;
+
+		if (bubbleTimer <= 0)
+			SpawnBubble ();
 	}
 	
 	void LateUpdate()
@@ -152,7 +164,14 @@ public class PlayerController : MonoBehaviour
 	{
 		fishPosition = new Vector3 (Random.Range (minXPos, maxXPos), -6, -1.1f);
 		GameObject.Instantiate (fish, fishPosition, Quaternion.identity);
-		fishTimer = 1.8f;
+		fishTimer = .5f;
+	}
+
+	private void SpawnBubble()
+	{
+		bubblePosition = new Vector3 (Random.Range (minXPos, maxXPos), Random.Range (minYPos, maxYPos), -1.1f);
+		GameObject.Instantiate (bubble, bubblePosition, Quaternion.identity);
+		bubbleTimer = 7f;
 	}
 
 	public float getAir()

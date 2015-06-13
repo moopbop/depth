@@ -17,7 +17,7 @@ public class Fish : MonoBehaviour {
 	
 		Vector2 velocity = this.GetComponent<Rigidbody2D> ().velocity;
 
-		velocity.y = speedY + (player.combo * player.comboYSpeedMult);
+		velocity.y = speedY + (player.combo * 1.5f * player.comboYSpeedMult);
 
 		this.GetComponent<Rigidbody2D> ().velocity = velocity;
 
