@@ -259,6 +259,10 @@ MonoBehaviour:
   maxYVel: 15
   combo: 0
   comboYSpeedMult: 0
+  minXPos: -8.5
+  maxXPos: 8.5
+  minYPos: -4.5999999
+  maxYPos: 4.6500001
 --- !u!61 &716504067
 BoxCollider2D:
   m_ObjectHideFlags: 0

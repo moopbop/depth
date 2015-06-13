@@ -22,6 +22,12 @@ public class PlayerController : MonoBehaviour
 	
 	[Tooltip("Rate to increase Y velocity per combo level")]
 	public float comboYSpeedMult;
+	
+	// For clamping player movement, will be made private after tinkering is done
+	public float minXPos;
+	public float maxXPos;
+	public float minYPos;
+	public float maxYPos;
 	#endregion
 	
 	#region private variables
@@ -64,6 +70,14 @@ public class PlayerController : MonoBehaviour
 	
 	void LateUpdate()
 	{
+		// Apply movement
 		transform.Translate(velocity * Time.deltaTime);
+		
+		// Clamp position
+		float clampedX = Mathf.Clamp(this.transform.position.x, minXPos, maxXPos);
+		float clampedY = Mathf.Clamp(this.transform.position.y, minYPos, maxYPos);
+		Vector2 clampedPosition = new Vector2(clampedX, clampedY);
+		
+		this.transform.position = clampedPosition;
 	}
 }
