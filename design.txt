@@ -1,0 +1,40 @@
+Jetpack to the bottom of the ocean
+Get air bubbles to replenish air
+Do stuff to fish to get combo and go faster
+Dodge sharks because they will eat you
+At the bottom we'll have something dumb and worth it
+
+TODO:
+1. Character movement
+	-Should always be affected by gravity
+	-Move in all directions
+	-Can't move off the screen
+	
+2. Score
+	-Score from going down
+	-Score from killing fish (with combo multiplier)
+	
+3. Air
+	-Air meter
+	-Constantly depleting
+	-Air bubbles randomly spawning
+	
+4. Combos
+	-Fish
+	-Kiling fish builds combo
+	-Combo lost after a certain time (shorter time for a greater combo)
+	-Combo adds to your speed
+	-Max combo 12
+	
+5. Sharks
+	-Sharks are bad and will eat you
+	
+6. Victory
+	-Cthulhu or the Flying Spaghetti Monster or something
+	-Show score and give sweet fanfare
+	
+7. Polish (optional - only if we have time)
+	-Better art
+	-Sound effects that aren't bfxr defaults
+	-Not jank menu
+	-Pausing
