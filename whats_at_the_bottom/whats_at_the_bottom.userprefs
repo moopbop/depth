@@ -1,12 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ScrollingBackground.cs">
     <Files>
-      <File FileName="Assets\Scripts\ScrollingBackground.cs" Line="19" Column="3" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="162" Column="14" />
-      <File FileName="Assets\Scripts\Fish.cs" Line="20" Column="45" />
+      <File FileName="Assets\Scripts\ScrollingBackground.cs" Line="5" Column="97" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="51" Column="9" />
+      <File FileName="Assets\Scripts\Fish.cs" Line="25" Column="25" />
       <File FileName="Assets\Scripts\AirBar.cs" Line="11" Column="71" />
-      <File FileName="Assets\Scripts\Bubble.cs" Line="9" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

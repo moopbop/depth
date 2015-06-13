@@ -57,8 +57,6 @@ public class PlayerController : MonoBehaviour
 	private float fishTimer;
 	private Vector3 bubblePosition;
 	private float bubbleTimer;
-	private int maxCombo;
-	private float originalMaxYVel;
 	#endregion
 	
 	void Start()
@@ -70,8 +68,6 @@ public class PlayerController : MonoBehaviour
 		air = maxAir;
 		fishTimer = 0;
 		bubbleTimer = 0;
-		maxCombo = 12;
-		originalMaxYVel = maxYVel;
 	}
 	
 	void Update()
@@ -113,10 +109,9 @@ public class PlayerController : MonoBehaviour
 		if (comboTimer > 0)
 			comboTimer -= Time.deltaTime;
 
-		if (comboTimer <= 0) {
+		if (comboTimer <= 0)
 			combo = 0;
-			maxYVel = originalMaxYVel;
-		}
+
 		if (fishTimer > 0)
 			fishTimer -= Time.deltaTime;
 
@@ -128,9 +123,6 @@ public class PlayerController : MonoBehaviour
 
 		if (bubbleTimer <= 0)
 			SpawnBubble ();
-
-		maxYPos = this.transform.parent.position.y + 4.65f;
-		minYPos = this.transform.parent.position.y - 4.6f;
 	}
 	
 	void LateUpdate()
@@ -157,10 +149,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		if (colTag == "Fish") {
-			if (combo < maxCombo)
-			{
-				combo++;
-			}
+			combo++;
 			comboTimer = maxComboTimer;
 			Object.Destroy(col.gameObject);
 		}
@@ -173,7 +162,7 @@ public class PlayerController : MonoBehaviour
 
 	private void SpawnFish()
 	{
-		fishPosition = new Vector3 (Random.Range (minXPos, maxXPos), GameObject.Find("FishSpawn").transform.position.y, -1.1f);
+		fishPosition = new Vector3 (Random.Range (minXPos, maxXPos), -6, -1.1f);
 		GameObject.Instantiate (fish, fishPosition, Quaternion.identity);
 		fishTimer = .5f;
 	}

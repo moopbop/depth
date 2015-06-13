@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 430890}
   - 212: {fileID: 21296796}
   - 61: {fileID: 6115266}
-  - 114: {fileID: 11463114}
   m_Layer: 8
   m_Name: Bubble
   m_TagString: Bubble
@@ -43,17 +42,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .639999986, y: .639999986}
---- !u!114 &11463114
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 143118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbfd289dc150c7f49a8a564975412bc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &21296796
 SpriteRenderer:
   m_ObjectHideFlags: 1

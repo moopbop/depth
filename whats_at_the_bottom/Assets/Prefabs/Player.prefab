@@ -78,7 +78,6 @@ MonoBehaviour:
   maxAir: 100
   maxComboTimer: 3
   fish: {fileID: 149258, guid: 5c161bfb4eb0bf448bb383321e40efe7, type: 2}
-  bubble: {fileID: 143118, guid: 18baba89aeafc5346b21bd68e27a1bca, type: 2}
   airLossPerSecond: 2
   airIncreaseOnPopBubble: 10
   bubbleMask:
