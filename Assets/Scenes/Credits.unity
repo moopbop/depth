@@ -282,7 +282,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Made for bacon jam 9\n\nProgramming: baconman2134\n              moopbop\n\nArt:
-    moopbop\n\n\"Story\": moopbop\n                      baconman2134"
+    moopbop\n\n\"Story\": moopbop\n                      baconman2134\n\nMusic: Jump
+    to Win by neocrey\nvia opengameart.org"
 --- !u!222 &1382011484
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -303,8 +304,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 2, y: -1}
-  m_SizeDelta: {x: 197, y: 143}
+  m_AnchoredPosition: {x: -3.81469727e-06, y: -2.86102295e-06}
+  m_SizeDelta: {x: 225.300003, y: 211.100006}
   m_Pivot: {x: .5, y: .5}
 --- !u!1001 &1474854891
 Prefab:
