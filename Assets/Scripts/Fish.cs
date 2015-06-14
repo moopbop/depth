@@ -7,6 +7,8 @@ public class Fish : MonoBehaviour {
 
 	public float speedY;
 
+	public Sprite beer;
+
 	private int rotate;
 
 	// Use this for initialization
@@ -14,6 +16,11 @@ public class Fish : MonoBehaviour {
 		player = GameObject.Find ("Player").GetComponent<PlayerController>();
 
 		rotate = Random.Range (1, 3);
+
+		int intbeer = Random.Range (0, 100);
+
+		if (intbeer == 50)
+			this.GetComponent<SpriteRenderer> ().sprite = beer;
 
 		if (rotate == 2) {
 			Vector3 scale = this.transform.localScale;
