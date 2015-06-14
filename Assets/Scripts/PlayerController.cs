@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour
 
 	private float score;
 	private float baseScore;
+	
+	private CameraShake shake;
 	#endregion
 	
 	void Start()
@@ -74,6 +76,7 @@ public class PlayerController : MonoBehaviour
 		spawnSharks = false;
 		sharkTimer = 0;
 		baseScore = 25f;
+		shake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
 	}
 	
 	void Update()
@@ -182,6 +185,7 @@ public class PlayerController : MonoBehaviour
 			comboTimer = maxComboTimer;
 			Object.Destroy(col.gameObject);
 			if (fishHitAudio != null)  AudioSource.PlayClipAtPoint(fishHitAudio, this.transform.position);
+			shake.Shake();
 		}
 		
 		if (colTag == "Shark")
