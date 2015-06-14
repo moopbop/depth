@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			Application.Quit();
+			Application.LoadLevel(0);
 		}
 	}
 }
