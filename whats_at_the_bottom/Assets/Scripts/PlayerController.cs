@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 /*
  * References:
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour
 	
 	public int combo;						// Public for ease of coding, will be made private on release.
 	public float maxComboTimer;
-	ScrollingBackground scrBkg;
+
 	
 	public float maxAir;
 	public GameObject bubble;
@@ -57,6 +58,9 @@ public class PlayerController : MonoBehaviour
 	
 	private Vector3 bubblePosition;
 	private float bubbleTimer;
+
+	private float score;
+	private float baseScore;
 	#endregion
 	
 	void Start()
@@ -67,9 +71,9 @@ public class PlayerController : MonoBehaviour
 		air = maxAir;
 		fishTimer = 0;
 		bubbleTimer = 0;
-		scrBkg = GameObject.Find("Background").GetComponent<ScrollingBackground>();
 		spawnSharks = false;
 		sharkTimer = 0;
+		baseScore = 25f;
 	}
 	
 	void Update()
@@ -130,14 +134,23 @@ public class PlayerController : MonoBehaviour
 		// Sharks
 		if (sharkTimer > 0)
 			sharkTimer -= Time.deltaTime;
-		if (spawnSharks == false && scrBkg.getDistance() >= sharkStartSpawnDistance)
+
+		if (score >= 5000f)
 		{
 			spawnSharks = true;
 		}
-		if (sharkTimer <= 0)
+
+		if (sharkTimer <= 0 && spawnSharks)
 		{
 			SpawnShark();
 		}
+
+		score += Time.deltaTime * (baseScore * (combo + 1));
+
+		GameObject.Find ("txtScore").GetComponent<Text> ().text = score.ToString ("###################################");
+
+		if (score >= 10000f)
+			Application.LoadLevel (4);
 	}
 	
 	void LateUpdate()
@@ -181,6 +194,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (deathAudio != null) AudioSource.PlayClipAtPoint(deathAudio, this.transform.position);
 		Object.Destroy(this);
+		Application.LoadLevel (5);
 	}
 
 	private void SpawnFish()

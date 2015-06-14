@@ -7,9 +7,21 @@ public class Fish : MonoBehaviour {
 
 	public float speedY;
 
+	private int rotate;
+
 	// Use this for initialization
 	void Start () {
 		player = GameObject.Find ("Player").GetComponent<PlayerController>();
+
+		rotate = Random.Range (1, 3);
+
+		if (rotate == 2) {
+			Vector3 scale = this.transform.localScale;
+
+			scale.x = -1;
+
+			this.transform.localScale = scale;
+		}
 	}
 	
 	// Update is called once per frame

@@ -7,11 +7,9 @@ public class ScrollingBackground : MonoBehaviour
 {
 	public float scrollSpeed;
 	PlayerController player;
-	private float distance;
 
 	void Start(){
 		player = GameObject.Find ("Player").GetComponent<PlayerController>();
-		distance = 0;
 	}
 
 	void Update()
@@ -20,12 +18,5 @@ public class ScrollingBackground : MonoBehaviour
 		float y = Time.deltaTime * (scrollSpeed - player.combo * player.comboYSpeedMult);
 		Vector2 offset = new Vector2(0, currentOffsetY + y);
 		this.GetComponent<Renderer>().sharedMaterial.SetTextureOffset("_MainTex", offset);
-		
-		distance += -y;
-	}
-	
-	public float getDistance()
-	{
-		return distance;
 	}
 }
